@@ -8,10 +8,10 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 
 module.exports = () => {
   return {
-    mode: 'development',
+    mode: 'production',
     entry: {
-      main: './src/js/index.js',
-      install: './src/js/install.js'
+      main: '/src/js/index.js',
+      install: '/src/js/install.js'
     },
     output: {
       filename: '[name].bundle.js',
@@ -22,27 +22,28 @@ module.exports = () => {
         template: './index.html',
         title: 'Just Another Text Editor'
       }),
-      new InjectManifest({
-        swSrc: './src-sw.js',
-        swDest: 'src-sw.js',
-      }), 
       new WebpackPwaManifest({
-        id: './',
         name: 'Just Another Text Editor',
         short_name: 'J.A.T.E.',
         description: 'Take notes with Javascript syntax highlighting!',
         background_color: '#225ca3',
         theme_color: '#225ca3',
-        start_url: './',
-        publicPath: './',
+        start_url: '/',
+        publicPath: '/',
+        fingerprints: false,
         icons: [
           {
-            src: path.resolve('./src/images/logo.png'),
-            sizes: [96, 128, 192, 256, 384, 512],
+            src: path.resolve('src/images/logo.png'),
+            // size: '96x96',
+            sizes: [96, 128, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           },
         ],
       }),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }), 
     ],
 
     module: {
