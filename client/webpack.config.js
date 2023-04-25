@@ -28,6 +28,7 @@ module.exports = () => {
         description: 'Take notes with Javascript syntax highlighting!',
         background_color: '#225ca3',
         theme_color: '#225ca3',
+        id: '/',
         start_url: '/',
         publicPath: '/',
         fingerprints: false,
